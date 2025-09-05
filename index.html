@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consciousness Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            line-height: 1.6;
+            padding-bottom: 70px;
+            transition: background 0.5s ease;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .site-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            transition: all 0.4s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        /* Language Popup */
+        .language-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .language-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .language-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .language-content h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .language-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .language-option {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .content-section {
+            padding: 20px;
+            margin: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fdbb2d;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #5c6bc0, #ff5252);
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ff4081, #7c4dff);
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #fdbb2d;
+            margin-bottom: 10px;
+        }
+
+        /* Library Styles */
+        .library-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .library-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .library-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Share Page Styles */
+        .share-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .share-option {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .share-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 990;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #fdbb2d;
+            background: rgba(253, 187, 45, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .site-title {
+                font-size: 22px;
+            }
+            
+            .library-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo">CP</div>
+            <div class="site-title">Consciousness Portal</div>
+        </div>
+        <div class="header-buttons">
+            <button class="header-btn" id="language-btn">
+                <i class="fas fa-globe"></i>
+            </button>
+            <button class="header-btn" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="#" data-page="home"><i class="fas fa-home"></i> <span data-translate="home">Home</span></a></li>
+            <li><a href="#" data-page="consciousness"><i class="fas fa-brain"></i> <span data-translate="consciousness">Consciousness</span></a></li>
+            <li><a href="#" data-page="mass-adoption"><i class="fas fa-users"></i> <span data-translate="mass_adoption">Mass Adoption</span></a></li>
+            <li><a href="#" data-page="proof"><i class="fas fa-search"></i> <span data-translate="proof_evidence">Proof of Evidence</span></a></li>
+            <li><a href="#" data-page="updates"><i class="fas fa-newspaper"></i> <span data-translate="latest_update">Latest Update</span></a></li>
+            <li><a href="#" data-page="library"><i class="fas fa-book"></i> <span data-translate="library">Library</span></a></li>
+            <li><a href="#" data-page="share"><i class="fas fa-share-alt"></i> <span data-translate="share">Share</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Language Popup -->
+    <div class="language-popup" id="language-popup">
+        <div class="language-content">
+            <h2 data-translate="choose_language">Choose Language</h2>
+            <div class="language-options">
+                <div class="language-option" data-lang="en">English</div>
+                <div class="language-option" data-lang="hi">Hindi</div>
+                <div class="language-option" data-lang="ne">Nepali</div>
+                <div class="language-option" data-lang="sa">Sanskrit</div>
+            </div>
+        </div>
+        <button class="close-popup" id="close-popup">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="content-section">
+                <h2 data-translate="welcome_title">Welcome to Consciousness Portal</h2>
+                <p data-translate="welcome_text">Explore the depths of human consciousness and discover evidence of mass awakening across the globe.</p>
+                <div class="image-placeholder">
+                    <i class="fas fa-image fa-3x"></i>
+                </div>
+                <p data-translate="mission_text">Our mission is to document and share the proof of evolving human consciousness through various media and research.</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-section">
+                    <h2 data-translate="latest_evidence">Latest Evidence</h2>
+                    <p data-translate="evidence_text">New studies show a significant increase in collective consciousness indicators over the past decade.</p>
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle fa-3x"></i>
+                    </div>
+                    <p data-translate="watch_text">Watch our documentary on global consciousness shifts and their impact on society.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2 data-translate="community_updates">Community Updates</h2>
+                    <p data-translate="community_text">Join our growing community of over 50,000 conscious individuals worldwide.</p>
+                    <div class="image-placeholder">
+                        <i class="fas fa-users fa-3x"></i>
+                    </div>
+                    <p data-translate="participate_text">Participate in our monthly webinars and meditation events for collective awakening.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consciousness Page -->
+        <div id="consciousness-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="consciousness_title">Understanding Consciousness</h2>
+                <p data-translate="consciousness_text">Consciousness represents the awareness of internal and external existence. Despite millennia of analyses, definitions, explanations, and debates by philosophers and scientists, consciousness remains puzzling and controversial.</p>
+                
+                <div class="image-placeholder">
+                    <i class="fas fa-brain fa-3x"></i>
+                </div>
+                
+                <h3 data-translate="consciousness_subtitle">Levels of Consciousness</h3>
+                <p data-translate="consciousness_levels">Consciousness is often described as having levels ranging from full awareness to deep sleep. Modern research suggests it's more of a spectrum than distinct states.</p>
+                
+                <div class="card">
+                    <h3 data-translate="collective_consciousness">Collective Consciousness</h3>
+                    <p data-translate="collective_text">The shared beliefs, ideas, and moral attitudes that operate as a unifying force within society. Many traditions suggest a global shift in collective consciousness is underway.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mass Adoption Page -->
+        <div id="mass-adoption-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="mass_adoption_title">Mass Consciousness Adoption</h2>
+                <p data-translate="mass_adoption_text">Across the globe, millions are awakening to higher states of consciousness. This movement is growing exponentially as more people seek meaning beyond material existence.</p>
+                
+                <div class="image-placeholder">
+                    <i class="fas fa-globe-americas fa-3x"></i>
+                </div>
+                
+                <h3 data-translate="global_movement">Global Movement</h3>
+                <p data-translate="global_movement_text">From mindfulness practices in corporations to meditation in schools, conscious practices are being adopted at an unprecedented rate worldwide.</p>
+                
+                <div class="content-grid">
+                    <div class="card">
+                        <h3 data-translate="meditation_stats">Meditation Adoption</h3>
+                        <p data-translate="meditation_stats_text">Over 500% increase in regular meditation practice in the last decade, with over 200 million people now practicing worldwide.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 data-translate="yoga_stats">Yoga Practice</h3>
+                        <p data-translate="yoga_stats_text">Yoga practitioners have grown from 20 million to over 300 million in the past 20 years, indicating massive interest in conscious practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proof of Evidence Page -->
+        <div id="proof-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="proof_title">Evidence of Expanding Consciousness</h2>
+                <p data-translate="proof_text">Scientific research is beginning to validate what spiritual traditions have long claimed about human consciousness and its potential.</p>
+                
+                <div class="video-placeholder">
+                    <i class="fas fa-microscope fa-3x"></i>
+                </div>
+                
+                <h3 data-translate="scientific_evidence">Scientific Studies</h3>
+                <p data-translate="scientific_evidence_text">Neuroscience research shows measurable changes in brain activity during meditation and other consciousness-expanding practices.</p>
+                
+                <div class="content-grid">
+                    <div class="card">
+                        <h3 data-translate="study1_title">Harvard Meditation Study</h3>
+                        <p data-translate="study1_text">8 weeks of meditation practice led to measurable changes in brain regions associated with memory, sense of self, empathy, and stress.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 data-translate="study2_title">Global Consciousness Project</h3>
+                        <p data-translate="study2_text">Random number generators show correlations during global events that suggest interconnected consciousness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Updates Page -->
+        <div id="updates-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="updates_title">Latest Updates</h2>
+                <p data-translate="updates_text">Stay informed about the latest developments in consciousness research and global awakening trends.</p>
+                
+                <div class="card">
+                    <h3 data-translate="update1_title">Global Meditation Event</h3>
+                    <p data-translate="update1_date">September 15, 2023</p>
+                    <p data-translate="update1_text">Record-breaking participation in the annual global peace meditation with over 10 million simultaneous participants.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 data-translate="update2_title">New Consciousness Research Center</h3>
+                    <p data-translate="update2_date">August 28, 2023</p>
+                    <p data-translate="update2_text">Stanford University announces the opening of a new research center dedicated to the study of consciousness.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 data-translate="update3_title">Mindfulness in Education</h3>
+                    <p data-translate="update3_date">July 12, 2023</p>
+                    <p data-translate="update3_text">20 countries now include mindfulness practices in their national education curricula, up from just 3 countries five years ago.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Page -->
+        <div id="library-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="library_title">Consciousness Library</h2>
+                <p data-translate="library_text">Access our curated collection of resources on consciousness studies and practices.</p>
+                
+                <div class="library-grid">
+                    <div class="library-item">
+                        <div class="library-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h3 data-translate="ebooks_title">E-Books</h3>
+                            <p data-translate="ebooks_text">50+ books on consciousness</p>
+                        </div>
+                    </div>
+                    
+                    <div class="library-item">
+                        <div class="library-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div>
+                            <h3 data-translate="videos_title">Video Series</h3>
+                            <p data-translate="videos_text">Documentaries and talks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="library-item">
+                        <div class="library-icon">
+                            <i class="fas fa-podcast"></i>
+                        </div>
+                        <div>
+                            <h3 data-translate="podcasts_title">Podcasts</h3>
+                            <p data-translate="podcasts_text">Interviews with experts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="library-item">
+                        <div class="library-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h3 data-translate="research_title">Research Papers</h3>
+                            <p data-translate="research_text">Scientific studies</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 data-translate="featured_resource">Featured Resource</h3>
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle fa-3x"></i>
+                    </div>
+                    <p data-translate="featured_text">"The Conscious Universe" - A documentary exploring the scientific evidence for interconnected consciousness.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Page -->
+        <div id="share-page" class="page">
+            <div class="content-section">
+                <h2 data-translate="share_title">Share the Consciousness Portal</h2>
+                <p data-translate="share_text">Help spread awareness by sharing this portal with others who might benefit from this knowledge.</p>
+                
+                <div class="share-options">
+                    <div class="share-option">
+                        <i class="fab fa-facebook"></i>
+                        <span data-translate="facebook">Facebook</span>
+                    </div>
+                    
+                    <div class="share-option">
+                        <i class="fab fa-twitter"></i>
+                        <span data-translate="twitter">Twitter</span>
+                    </div>
+                    
+                    <div class="share-option">
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-translate="whatsapp">WhatsApp</span>
+                    </div>
+                    
+                    <div class="share-option">
+                        <i class="fas fa-envelope"></i>
+                        <span data-translate="email">Email</span>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 data-translate="invite_friends">Invite Friends</h3>
+                    <p data-translate="invite_text">Enter email addresses below to invite friends to explore the Consciousness Portal:</p>
+                    
+                    <div style="margin-top: 15px;">
+                        <input type="text" placeholder="Email addresses" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: rgba(255,255,255,0.1); color: white;">
+                        <button style="margin-top: 10px; padding: 12px 20px; border-radius: 8px; border: none; background: #fdbb2d; color: #000; font-weight: bold; width: 100%; cursor: pointer;" data-translate="send_invites">Send Invitations</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span data-translate="home">Home</span>
+        </a>
+        <a href="#" class="nav-item" data-page="consciousness">
+            <i class="fas fa-brain"></i>
+            <span data-translate="consciousness">Consciousness</span>
+        </a>
+        <a href="#" class="nav-item" data-page="proof">
+            <i class="fas fa-search"></i>
+            <span data-translate="proof">Proof</span>
+        </a>
+        <a href="#" class="nav-item" data-page="mass-adoption">
+            <i class="fas fa-users"></i>
+            <span data-translate="adoption">Adoption</span>
+        </a>
+        <a href="#" class="nav-item" data-page="updates">
+            <i class="fas fa-newspaper"></i>
+            <span data-translate="updates">Updates</span>
+        </a>
+    </nav>
+
+    <script>
+        // DOM Elements
+        const menuBtn = document.getElementById('menu-btn');
+        const languageBtn = document.getElementById('language-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const languagePopup = document.getElementById('language-popup');
+        const closePopup = document.getElementById('close-popup');
+        const langOptions = document.querySelectorAll('.language-option');
+        const pages = document.querySelectorAll('.page');
+        const navItems = document.querySelectorAll('.nav-item');
+        const mobileMenuItems = document.querySelectorAll('.mobile-menu a');
+        
+        // Translation data
+        const translations = {
+            en: {
+                home: "Home",
+                consciousness: "Consciousness",
+                mass_adoption: "Mass Adoption",
+                proof_evidence: "Proof of Evidence",
+                latest_update: "Latest Update",
+                library: "Library",
+                share: "Share",
+                choose_language: "Choose Language",
+                welcome_title: "Welcome to Consciousness Portal",
+                welcome_text: "Explore the depths of human consciousness and discover evidence of mass awakening across the globe.",
+                mission_text: "Our mission is to document and share the proof of evolving human consciousness through various media and research.",
+                latest_evidence: "Latest Evidence",
+                evidence_text: "New studies show a significant increase in collective consciousness indicators over the past decade.",
+                watch_text: "Watch our documentary on global consciousness shifts and their impact on society.",
+                community_updates: "Community Updates",
+                community_text: "Join our growing community of over 50,000 conscious individuals worldwide.",
+                participate_text: "Participate in our monthly webinars and meditation events for collective awakening.",
+                proof: "Proof",
+                adoption: "Adoption",
+                updates: "Updates",
+                consciousness_title: "Understanding Consciousness",
+                consciousness_text: "Consciousness represents the awareness of internal and external existence. Despite millennia of analyses, definitions, explanations, and debates by philosophers and scientists, consciousness remains puzzling and controversial.",
+                consciousness_subtitle: "Levels of Consciousness",
+                consciousness_levels: "Consciousness is often described as having levels ranging from full awareness to deep sleep. Modern research suggests it's more of a spectrum than distinct states.",
+                collective_consciousness: "Collective Consciousness",
+                collective_text: "The shared beliefs, ideas, and moral attitudes that operate as a unifying force within society. Many traditions suggest a global shift in collective consciousness is underway.",
+                mass_adoption_title: "Mass Consciousness Adoption",
+                mass_adoption_text: "Across the globe, millions are awakening to higher states of consciousness. This movement is growing exponentially as more people seek meaning beyond material existence.",
+                global_movement: "Global Movement",
+                global_movement_text: "From mindfulness practices in corporations to meditation in schools, conscious practices are being adopted at an unprecedented rate worldwide.",
+                meditation_stats: "Meditation Adoption",
+                meditation_stats_text: "Over 500% increase in regular meditation practice in the last decade, with over 200 million people now practicing worldwide.",
+                yoga_stats: "Yoga Practice",
+                yoga_stats_text: "Yoga practitioners have grown from 20 million to over 300 million in the past 20 years, indicating massive interest in conscious practices.",
+                proof_title: "Evidence of Expanding Consciousness",
+                proof_text: "Scientific research is beginning to validate what spiritual traditions have long claimed about human consciousness and its potential.",
+                scientific_evidence: "Scientific Studies",
+                scientific_evidence_text: "Neuroscience research shows measurable changes in brain activity during meditation and other consciousness-expanding practices.",
+                study1_title: "Harvard Meditation Study",
+                study1_text: "8 weeks of meditation practice led to measurable changes in brain regions associated with memory, sense of self, empathy, and stress.",
+                study2_title: "Global Consciousness Project",
+                study2_text: "Random number generators show correlations during global events that suggest interconnected consciousness.",
+                updates_title: "Latest Updates",
+                updates_text: "Stay informed about the latest developments in consciousness research and global awakening trends.",
+                update1_title: "Global Meditation Event",
+                update1_date: "September 15, 2023",
+                update1_text: "Record-breaking participation in the annual global peace meditation with over 10 million simultaneous participants.",
+                update2_title: "New Consciousness Research Center",
+                update2_date: "August 28, 2023",
+                update2_text: "Stanford University announces the opening of a new research center dedicated to the study of consciousness.",
+                update3_title: "Mindfulness in Education",
+                update3_date: "July 12, 2023",
+                update3_text: "20 countries now include mindfulness practices in their national education curricula, up from just 3 countries five years ago.",
+                library_title: "Consciousness Library",
+                library_text: "Access our curated collection of resources on consciousness studies and practices.",
+                ebooks_title: "E-Books",
+                ebooks_text: "50+ books on consciousness",
+                videos_title: "Video Series",
+                videos_text: "Documentaries and talks",
+                podcasts_title: "Podcasts",
+                podcasts_text: "Interviews with experts",
+                research_title: "Research Papers",
+                research_text: "Scientific studies",
+                featured_resource: "Featured Resource",
+                featured_text: "\"The Conscious Universe\" - A documentary exploring the scientific evidence for interconnected consciousness.",
+                share_title: "Share the Consciousness Portal",
+                share_text: "Help spread awareness by sharing this portal with others who might benefit from this knowledge.",
+                facebook: "Facebook",
+                twitter: "Twitter",
+                whatsapp: "WhatsApp",
+                email: "Email",
+                invite_friends: "Invite Friends",
+                invite_text: "Enter email addresses below to invite friends to explore the Consciousness Portal:",
+                send_invites: "Send Invitations"
+            },
+            hi: {
+                home: "होम",
+                consciousness: "चेतना",
+                mass_adoption: "जन अपनाना",
+                proof_evidence: "सबूत का प्रमाण",
+                latest_update: "नवीनतम अपडेट",
+                library: "लाइब्रेरी",
+                share: "शेयर",
+                choose_language: "भाषा चुनें",
+                welcome_title: "चेतना पोर्टल में आपका स्वागत है",
+                welcome_text: "मानव चेतना की गहराई का पता लगाएं और दुनिया भर में सामूहिक जागृति के सबूत खोजें।",
+                mission_text: "हमारा मिशन विभिन्न मीडिया और शोध के माध्यम से विकसित मानव चेतना के प्रमाण को दस्तावेज और साझा करना है।",
+                latest_evidence: "नवीनतम सबूत",
+                evidence_text: "नए अध्ययनों से पिछले दशक में सामूहिक चेतना संकेतकों में significant increase दिखाया गया है।",
+                watch_text: "वैश्विक चेतना shifts और समाज पर उनके प्रभाव पर हमारी वृत्तचित्र देखें।",
+                community_updates: "समुदाय अपडेट",
+                community_text: "दुनिया भर में 50,000 से अधिक conscious individuals के हमारे बढ़ते समुदाय में शामिल हों।",
+                participate_text: "सामूहिक जागृति के लिए हमारे मासिक वेबिनार और ध्यान कार्यक्रमों में भाग लें।",
+                proof: "सबूत",
+                adoption: "अपनाना",
+                updates: "अपडेट",
+                consciousness_title: "चेतना को समझना",
+                consciousness_text: "चेतना आंतरिक और बाहरी अस्तित्व की जागरूकता का प्रतिनिधित्व करती है। हजारों साल के विश्लेषण, परिभाषाओं, स्पष्टीकरणों और दार्शनिकों और वैज्ञानिकों की बहसों के बावजूद, चेतना चुनौतीपूर्ण और विवादास्पद बनी हुई है।",
+                consciousness_subtitle: "चेतना के स्तर",
+                consciousness_levels: "चेतना को अक्सर पूर्ण जागरूकता से लेकर गहरी नींद तक के स्तर के रूप में वर्णित किया जाता है। आधुनिक शोध बताते हैं कि यह अलग-अलग अवस्थाओं के बजाय एक स्पेक्ट्रम है।",
+                collective_consciousness: "सामूहिक चेतना",
+                collective_text: "साझा विश्वास, विचार और नैतिक दृष्टिकोण जो समाज के भीतर एक एकजुट शक्ति के रूप में कार्य करते हैं। कई परंपराएँ बताती हैं कि सामूहिक चेतना में वैश्विक बदलाव हो रहा है।",
+                mass_adoption_title: "सामूहिक चेतना अपनाना",
+                mass_adoption_text: "पूरी दुनिया में, लाखों लोग चेतना के उच्च स्तरों तक जाग रहे हैं। यह आंदोलन तेजी से बढ़ रहा है क्योंकि अधिक लोग भौतिक अस्तित्व से परे अर्थ की तलाश कर रहे हैं।",
+                global_movement: "वैश्विक आंदोलन",
+                global_movement_text: "कॉर्पोरेट्स में माइंडफुलनेस प्रथाओं से लेकर स्कूलों में ध्यान तक, conscious practices दुनिया भर में अभूतपूर्व दर पर अपनाई जा रही हैं।",
+                meditation_stats: "ध्यान अपनाना",
+                meditation_stats_text: "पिछले दशक में नियमित ध्यान अभ्यास में 500% से अधिक की वृद्धि, जिसमें दुनिया भर में अब 200 मिलियन से अधिक लोग अभ्यास कर रहे हैं।",
+                yoga_stats: "योग अभ्यास",
+                yoga_stats_text: "योग चिकित्सक पिछले 20 वर्षों में 20 मिलियन से बढ़कर 300 मिलियन से अधिक हो गए हैं, जो conscious practices में भारी रुचि का संकेत देता है।",
+                proof_title: "विस्तारित चेतना के सबूत",
+                proof_text: "वैज्ञानिक शोध इस बात को validate करना शुरू कर रहा है कि आध्यात्मिक परंपराओं ने मानव चेतना और उसकी क्षमता के बारे में लंबे समय से क्या दावा किया है।",
+                scientific_evidence: "वैज्ञानिक अध्ययन",
+                scientific_evidence_text: "न्यूरोसाइंस शोध ध्यान और अन्य चेतना-विस्तारक प्रथाओं के दौरान मस्तिष्क की गतिविधि में मापने योग्य परिवर्तन दिखाता है।",
+                study1_title: "हार्वर्ड ध्यान अध्ययन",
+                study1_text: "ध्यान अभ्यास के 8 सप्ताह से स्मृति, आत्म-भावना, सहानुभूति और तनाव से जुड़े मस्तिष्क क्षेत्रों में मापने योग्य परिवर्तन आए।",
+                study2_title: "वैश्विक चेतना परियोजना",
+                study2_text: "रैंडम नंबर जेनरेटर वैश्विक घटनाओं के दौरान correlations दिखाते हैं जो interconnected consciousness का सुझाव देते हैं।",
+                updates_title: "नवीनतम अपडेट",
+                updates_text: "चेतना शोध और वैश्विक जागरण trends में नवीनतम developments के बारे में सूचित रहें।",
+                update1_title: "वैश्विक ध्यान कार्यक्रम",
+                update1_date: "15 सितंबर, 2023",
+                update1_text: "वार्षिक वैश्विक शांति ध्यान में रिकॉर्ड-तोड़ भागीदारी, जिसमें 10 मिलियन से अधिक simultaneous participants थे।",
+                update2_title: "नया चेतना शोध केंद्र",
+                update2_date: "28 अगस्त, 2023",
+                update2_text: "स्टैनफोर्ड यूनिवर्सिटी ने चेतना के अध्ययन के लिए समर्पित एक नए शोध केंद्र के उद्घाटन की घोषणा की।",
+                update3_title: "शिक्षा में माइंडफुलनेस",
+                update3_date: "12 जुलाई, 2023",
+                update3_text: "20 देश अब अपने राष्ट्रीय education curricula में mindfulness practices शामिल करते हैं, जो पांच साल पहले केवल 3 देशों से अधिक है।",
+                library_title: "चेतना लाइब्रेरी",
+                library_text: "चेतना अध्ययन और practices पर हमारे curated collection of resources तक पहुंचें।",
+                ebooks_title: "ई-बुक्स",
+                ebooks_text: "चेतना पर 50+ पुस्तकें",
+                videos_title: "वीडियो श्रृंखला",
+                videos_text: "डॉक्यूमेंट्री और talks",
+                podcasts_title: "पॉडकास्ट",
+                podcasts_text: "विशेषज्ञों के साथ interviews",
+                research_title: "research papers",
+                research_text: "वैज्ञानिक अध्ययन",
+                featured_resource: "featured resource",
+                featured_text: "\"The Conscious Universe\" - interconnected consciousness के वैज्ञानिक evidence की खोज करने वाली एक documentary।",
+                share_title: "चेतना पोर्टल साझा करें",
+                share_text: "इस ज्ञान से लाभान्वित हो सकने वाले अन्य लोगों के साथ इस पोर्टल को साझा करके awareness फैलाने में मदद करें।",
+                facebook: "Facebook",
+                twitter: "Twitter",
+                whatsapp: "WhatsApp",
+                email: "Email",
+                invite_friends: "दोस्तों को आमंत्रित करें",
+                invite_text: "दोस्तों को चेतना पोर्टल explore करने के लिए आमंत्रित करने के लिए नीचे email addresses दर्ज करें:",
+                send_invites: "आमंत्रण भेजें"
+            },
+            ne: {
+                home: "गृह",
+                consciousness: "चेतना",
+                mass_adoption: "जन्यौता",
+                proof_evidence: "प्रमाण को सबूत",
+                latest_update: "नवीनतम अपडेट",
+                library: "पुस्तकालय",
+                share: "साझा",
+                choose_language: "भाषा चयन गर्नुहोस्",
+                welcome_title: "चेतना पोर्टलमा स्वागत छ",
+                welcome_text: "मानव चेतनाको गहिराइहरू अन्वेषण गर्नुहोस् र विश्वभरिको सामूहिक जागरणको प्रमाण पत्ता लगाउनुहोस्।",
+                mission_text: "विभिन्न मिडिया र अनुसन्धानको माध्यमबाट विकसित मानव चेतनाको प्रमाण लेखन तथा साझा गर्ने हाम्रो मिशन हो।",
+                latest_evidence: "नवीनतम प्रमाण",
+                evidence_text: "नयाँ अध्ययनहरूले विगत दशकमा सामूहिक चेतना सूचकहरूमा ठूलो वृद्धि देखाएका छन्।",
+                watch_text: "वैश्विक चेतना परिवर्तनहरू र समाजमा तिनीहरूको प्रभावको हाम्रो वृत्तचित्र हेर्नुहोस्।",
+                community_updates: "समुदाय अपडेटहरू",
+                community_text: "विश्वभरि ५०,००० भन्दा बढी सचेत व्यक्तिहरूको हाम्रो बढ्दो समुदायमा सामेल हुनुहोस्।",
+                participate_text: "सामूहिक जागरणको लागि हाम्रो मासिक वेबिनार र ध्यान कार्यक्रमहरूमा सहभागी हुनुहोस्।",
+                proof: "प्रमाण",
+                adoption: "अङ्गीकार",
+                updates: "अद्यावधिक",
+                consciousness_title: "चेतना बुझ्नुहोस्",
+                consciousness_text: "चेतनाले आन्तरिक र बाह्य अस्तित्वको चेतनाको प्रतिनिधित्व गर्दछ। हजारौं वर्षको विश्लेषण, परिभाषाहरू, स्पष्टीकरणहरू, र दार्शनिकहरू र वैज्ञानिकहरूको बहसहरूको बावजुद, चेतना puzzling र विवादास्पद रहन्छ।",
+                consciousness_subtitle: "चेतनाको स्तरहरू",
+                consciousness_levels: "चेतनालाई प्रायः पूर्ण चेतनाबाट गहिरो निदासम्मको स्तर भएको वर्णन गरिन्छ। आधुनिक अनुसन्धानले यो distinct states भन्दा spectrum को रूपमा सुझाव दिन्छ।",
+                collective_consciousness: "सामूहिक चेतना",
+                collective_text: "साझा विश्वासहरू, विचारहरू, र नैतिक अभिवृत्तिहरू जुन समाजभित्र एकजुट शक्तिको रूपमा कार्य गर्दछ। धेरै परम्पराहरूले सामूहिक चेतनामा विश्वव्यापी परिवर्तन भइरहेको छ भनेर सुझाव दिन्छन्।",
+                mass_adoption_title: "सामूहिक चेतना अङ्गीकार",
+                mass_adoption_text: "विश्वभरि, लाखौं मानिसहरू चेतनाको उच्च अवस्थाहरूमा जागिरहेका छन्। यो आन्दोलन exponentially बढिरहेको छ किनभने बढी मानिसहरू भौतिक अस्तित्वभन्दा परेको अर्थ खोजी गर्दैछन्।",
+                global_movement: "वैश्विक आन्दोलन",
+                global_movement_text: "कर्पोरेसनहरूमा mindfulness practices बाट लिएर स्कूलहरूमा ध्यान सम्म, conscious practices विश्वव्यापी रूपमा अभूतपूर्व दरमा अपनाइँदैछन्।",
+                meditation_stats: "ध्यान अङ्गीकार",
+                meditation_stats_text: "विगत दशकमा नियमित ध्यान अभ्यासमा ५००% भन्दा बढी वृद्धि, जसमा विश्वभरि २०० मिलियन भन्दा बढी मानिसहरूले अब अभ्यास गर्दैछन्।",
+                yoga_stats: "योग अभ्यास",
+                yoga_stats_text: "योग अभ्यासकर्ताहरू विगत २० वर्षमा २० मिलियनबाट बढेर ३०० मिलियनभन्दा बढी पुगेका छन्, जसले conscious practices मा ठूलो रुचि देखाउँछ।",
+                proof_title: "विस्तारित चेतनाको प्रमाण",
+                proof_text: "वैज्ञानिक अनुसन्धानले मानव चेतना र यसको सम्भाव्यताको बारेमा आध्यात्मिक परम्पराहरूले लामो समयदेखि दावी गरेको कुरा validate गर्न सुरु गरिरहेको छ।",
+                scientific_evidence: "वैज्ञानिक अध्ययनहरू",
+                scientific_evidence_text: "न्युरोसाइन्स अनुसन्धानले ध्यान र अन्य चेतना-विस्तारक अभ्यासहरूको during मस्तिष्कको activity मा measurable changes देखाउँछ।",
+                study1_title: "हार्वर्ड ध्यान अध्ययन",
+                study1_text: "ध्यान अभ्यासको ८ हप्ताले memory, sense of self, empathy, र stress सँग सम्बन्धित मस्तिष्क क्षेत्रहरूमा measurable changes ल्यायो।",
+                study2_title: "वैश्विक चेतना परियोजना",
+                study2_text: "Random number generators ले विश्वव्यापी घटनाहरूको during correlations देखाउँछ जसले interconnected consciousness को सुझाव दिन्छ।",
+                updates_title: "नवीनतम अद्यावधिकहरू",
+                updates_text: "चेतना अनुसन्धान र विश्वव्यापी जागरण trends मा नवीनतम developments को बारेमा सूचित रहनुहोस्।",
+                update1_title: "वैश्विक ध्यान कार्यक्रम",
+                update1_date: "सेप्टेम्बर १५, २०२३",
+                update1_text: "वार्षिक विश्व शान्ति ध्यानमा रेकर्ड-तोड सहभागिता, जसमा १० मिलियनभन्दा बढी simultaneous participants थिए।",
+                update2_title: "नयाँ चेतना अनुसन्धान केन्द्र",
+                update2_date: "अगस्ट २८, २०२३",
+                update2_text: "स्ट्यानफोर्ड विश्वविद्यालयले चेतनाको अध्ययनको लागि समर्पित नयाँ अनुसन्धान केन्द्रको opening घोषणा गर्यो।",
+                update3_title: "शिक्षामा mindfulness",
+                update3_date: "जुलाई १२, २०२३",
+                update3_text: "२० देशहरूले अब आफ्नो national education curricula मा mindfulness practices समावेश गर्दछन्, जुन पाँच वर्ष अघि मात्र ३ देशहरूबाट बढ्यो।",
+                library_title: "चेतना पुस्तकालय",
+                library_text: "चेतना अध्ययन र अभ्यासहरूमा हाम्रो curated collection of resources लाई पहुँच गर्नुहोस्।",
+                ebooks_title: "ई-पुस्तकहरू",
+                ebooks_text: "चेतनामा ५०+ पुस्तकहरू",
+                videos_title: "भिडियो श्रृंखला",
+                videos_text: "documentaries र talks",
+                podcasts_title: "पडकास्टहरू",
+                podcasts_text: "विशेषज्ञहरूसँग interviews",
+                research_title: "research papers",
+                research_text: "वैज्ञानिक अध्ययनहरू",
+                featured_resource: "featured resource",
+                featured_text: "\"The Conscious Universe\" - interconnected consciousness को वैज्ञानिक evidence को अन्वेषण गर्ने documentary।",
+                share_title: "चेतना पोर्टल साझा गर्नुहोस्",
+                share_text: "यस ज्ञानबाट लाभान्वित हुन सक्ने अन्य व्यक्तिहरूसँग यो पोर्टल साझा गरेर awareness फैलाउन मद्दत गर्नुहोस्।",
+                facebook: "Facebook",
+                twitter: "Twitter",
+                whatsapp: "WhatsApp",
+                email: "Email",
+                invite_friends: "साथीहरूलाई आमन्त्रित गर्नुहोस्",
+                invite_text: "साथीहरूलाई चेतना पोर्टल explore गर्न आमन्त्रित गर्न तल email addresses हरू प्रविष्ट गर्नुहोस्:",
+                send_invites: "आमन्त्रणाहरू पठाउनुहोस्"
+            },
+            sa: {
+                home: "गृहम्",
+                consciousness: "चेतना",
+                mass_adoption: "जन स्वीकृति",
+                proof_evidence: "प्रमाणस्य प्रमाणम्",
+                latest_update: "नवीनतमम्",
+                library: "ग्रन्थालयः",
+                share: "साझा",
+                choose_language: "भाषां चिनोतु",
+                welcome_title: "चेतना पोर्टल में स्वागतम्",
+                welcome_text: "मानवचेतनायाः गभीरतां अन्वेषयतु तथा विश्वव्यापिकस्य सामूहिकजागरणस्य प्रमाणं अन्विष्यताम्।",
+                mission_text: "विविधमाध्यमैः अनुसन्धानैः च विकसितमानवचेतनायाः प्रमाणं दस्तावेजीकरणं साझाकरणं च अस्माकं कर्तव्यम् अस्ति।",
+                latest_evidence: "नवीनतमं प्रमाणम्",
+                evidence_text: "नूतनाभ्यां अध्ययनाभ्यां गतदशके सामूहिकचेतनासूचकेषु सsignificant increase दृश्यते।",
+                watch_text: "वैश्विकचेतनापरिवर्तनानां तेषां समाजे प्रभावाणां च विषये अस्माकं वृत्तचित्रं पश्यतु।",
+                community_updates: "समुदायस्य अद्यतनानि",
+                community_text: "विश्वव्यापितया ५०,००० अधिकाः सचेतव्यक्तयः अस्माकं वर्धमानसमुदाये सम्मिलितं भवन्तु।",
+                participate_text: "सामूहिकजागरणाय अस्माकं मासिकवेबिनारेषु ध्यानकार्यक्रमेषु च भागं गृह्णन्तु।",
+                proof: "प्रमाणम्",
+                adoption: "स्वीकृतिः",
+                updates: "अद्यतनानि",
+                consciousness_title: "चेतनां समजानातु",
+                consciousness_text: "चेतना आन्तरिकबाह्यअस्तित्वस्य जागरूकतां represents। philosophers वैज्ञानिकानां च millennia of analyses, definitions, explanations, debates इत्यादिभ्यः अपि चेतना puzzling controversial च भवति।",
+                consciousness_subtitle: "चेतनायाः स्तराः",
+                consciousness_levels: "चेतना प्रायः पूर्णजागरूकतातः deep sleep पर्यन्तं स्तरैः विद्यते इति वर्ण्यते। आधुनिकानुसन्धानानुसारं distinct states अपेक्षया spectrum एव अस्ति।",
+                collective_consciousness: "सामूहिकचेतना",
+                collective_text: "साझाविश्वासाः, ideas, नैतिकअभिवृत्तयः ये समाजे एकीकृतशक्तितया कार्यं कुर्वन्ति। बहवः परम्पराः सामूहिकचेतनायां वैश्विकपरिवर्तनं प्रचलितम् अस्ति इति सूचयन्ति।",
+                mass_adoption_title: "सामूहिकचेतनास्वीकृतिः",
+                mass_adoption_text: "विश्वव्यापितया, millions जनाः उच्चचेतनास्थितिषु जागरूकाः भवन्ति। material existence परेऽर्थं अन्विष्यन्तः अधिकजनाः यतः एषः आन्दोलनः exponentially वर्धते।",
+                global_movement: "वैश्विकआन्दोलनम्",
+                global_movement_text: "corporationsेषु mindfulness practicesतः schoolsेषु ध्यानं यावत्, conscious practices विश्वव्यापितया अभूतपूर्वदरेन स्वीक्रियन्ते।",
+                meditation_stats: "ध्यानस्वीकृतिः",
+                meditation_stats_text: "गतदशके नियमितध्यानअभ्यासे ५००% अधिका वृद्धिः, विश्वव्यापितया २०० million अधिकजनाः अधुना अभ्यासं कुर्वन्ति।",
+                yoga_stats: "योगअभ्यासः",
+                yoga_stats_text: "योगअभ्यासकर्तारः गत २० वर्षेषु २० millionतः ३०० million अधिकाः अभवन्, यत् conscious practices उपरि महती रुचिः सूचयति।",
+                proof_title: "विस्तृतचेतनायाः प्रमाणम्",
+                proof_text: "वैज्ञानिकानुसन्धानं मानवचेतना तस्य सम्भाव्यता च उपरि आध्यात्मिकपरम्पराः दीर्घकालं यावत् claims कृतवन्तः तत् validate करोति।",
+                scientific_evidence: "वैज्ञानिकअध्ययनानि",
+                scientific_evidence_text: "Neuroscience अनुसन्धानं ध्याने अन्येषु चेतना-विस्तारकअभ्यासेषु मस्तिष्कस्य activity इति measurable changes दर्शयति।",
+                study1_title: "हार्वर्डध्यानअध्ययनम्",
+                study1_text: "ध्यानअभ्यासस्य ८ weeks स्मृतिसंबद्धमस्तिष्कक्षेत्रेषु, आत्मभावनायाम्, empathy, stress च इति measurable changes आनीतवान्।",
+                study2_title: "वैश्विकचेतनाप्रकल्पः",
+                study2_text: "Random number generators वैश्विकघटनासु correlations दर्शयन्ति यत् interconnected consciousness इति सूचयति।",
+                updates_title: "नवीनतमानि अद्यतनानि",
+                updates_text: "चेतनानुसन्धाने विश्वव्यापिजागरण trends उपरि नवीनतमानि developments इति सूचितं भवतु।",
+                update1_title: "वैश्विकध्यानकार्यक्रमः",
+                update1_date: "सेप्टेम्बर १५, २०२३",
+                update1_text: "वार्षिकवैश्विकशान्तिध्याने record-breaking participation, 10 million अधिकैः simultaneous participants सह।",
+                update2_title: "नूतनं चेतनानुसन्धानकेन्द्रम्",
+                update2_date: "आगस्त २८, २०२३",
+                update2_text: "स्टैन्फोर्डविश्वविद्यालयः चेतनायाः अध्ययनाय समर्पितं नूतनं अनुसन्धानकेन्द्रस्य opening घोषितवान्।",
+                update3_title: "शिक्षायां mindfulness",
+                update3_date: "जुलाई १२, २०२३",
+                update3_text: "२० देशाः अधुना स्वस्य national education curricula इति mindfulness practices समाविशन्ति, पञ्च वर्षेभ्यः पूर्वं ३ देशेभ्यः एव वर्धिताः।",
+                library_title: "चेतना ग्रन्थालयः",
+                library_text: "चेतनाध्ययनानां practices इति अस्माकं curated collection of resources इति access कुरुत।",
+                ebooks_title: "ई-पुस्तकानि",
+                ebooks_text: "चेतनायां ५०+ पुस्तकानि",
+                videos_title: "वीडियोश्रृंखला",
+                videos_text: "documentaries talks च",
+                podcasts_title: "पॉडकास्ट्",
+                podcasts_text: "विशेषज्ञैः सह interviews",
+                research_title: "research papers",
+                research_text: "वैज्ञानिकअध्ययनानि",
+                featured_resource: "featured resource",
+                featured_text: "\"The Conscious Universe\" - interconnected consciousness इति वैज्ञानिकप्रमाणानां अन्वेषणं करोति documentary।",
+                share_title: "चेतना पोर्टलं साझा कुरुत",
+                share_text: "अस्मात् ज्ञानात् लाभान्विताः भवितुं शक्नुवन्तः अन्येभ्यः जनेभ्यः एतत् पोर्टलं साझा कृत्वा awareness प्रसारयितुं सहायतां कुरुत।",
+                facebook: "Facebook",
+                twitter: "Twitter",
+                whatsapp: "WhatsApp",
+                email: "Email",
+                invite_friends: "मित्राणि आमन्त्रयत",
+                invite_text: "मित्राणि चेतना पोर्टलं explore कर्तुं आमन्त्रयितुं अधः email addresses प्रविश्यताम्:",
+                send_invites: "आमन्त्रणानि प्रेषयत"
+            }
+        };
+
+        // Set default language
+        let currentLang = 'en';
+
+        // Toggle Mobile Menu
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Show Language Popup
+        languageBtn.addEventListener('click', () => {
+            languagePopup.classList.add('active');
+        });
+
+        // Close Language Popup
+        closePopup.addEventListener('click', () => {
+            languagePopup.classList.remove('active');
+        });
+
+        // Change language
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                changeLanguage(lang);
+                languagePopup.classList.remove('active');
+            });
+        });
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Navigation functionality
+        function navigateTo(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav item
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-page') === pageId.replace('-page', '')) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu if open
+            mobileMenu.classList.remove('active');
+        }
+
+        // Set up navigation event listeners
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = item.getAttribute('data-page') + '-page';
+                navigateTo(pageId);
+            });
+        });
+
+        // Set up mobile menu navigation
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = item.getAttribute('data-page') + '-page';
+                navigateTo(pageId);
+            });
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+            
+            if (!languageBtn.contains(e.target) && !languagePopup.contains(e.target)) {
+                languagePopup.classList.remove('active');
+            }
+        });
+
+        // Video placeholder click handler
+        document.querySelectorAll('.video-placeholder').forEach(video => {
+            video.addEventListener('click', () => {
+                alert('Video playback would start here in a complete implementation.');
+            });
+        });
+
+        // Share option click handlers
+        document.querySelectorAll('.share-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const platform = option.querySelector('span').textContent;
+                alert(`Sharing to ${platform} would happen here in a complete implementation.`);
+            });
+        });
+    </script>
+</body>
+</html>
